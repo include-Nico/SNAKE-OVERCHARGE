@@ -19,37 +19,27 @@
   --neon-blue: #3df0ff;
   --neon-pink: #ff3d81;
   --neon-gold: #ffc83d;
+  --neon-danger: #ff3d4d;
   --bg-dark: #070716;
-  --bg-glass: rgba(18, 18, 56, 0.55);
+  --bg-glass: rgba(18, 18, 56, 0.65);
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; margin: 0; padding: 0; }
 
 html, body { 
-  margin: 0; padding: 0; 
-  width: 100vw; 
-  height: 100dvh; /* Previene i salti della navbar su mobile */
-  overflow: hidden; 
-  background: var(--bg-dark); 
-  color: #eaf0ff; 
+  width: 100vw; height: 100dvh; overflow: hidden; 
+  background: var(--bg-dark); color: #eaf0ff; 
   font-family: 'Orbitron', sans-serif; 
-  touch-action: none; 
-  overscroll-behavior: none; 
+  touch-action: none; overscroll-behavior: none; 
 }
 
-/* Animated Background Grid */
-.bg-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(61, 240, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(61, 240, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; animation: gridMove 4s linear infinite; z-index: -1; }
+/* Sfondo animato */
+.bg-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(61, 240, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(61, 240, 255, 0.05) 1px, transparent 1px); background-size: 40px 40px; animation: gridMove 4s linear infinite; z-index: -1; }
 @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 40px 40px; } }
 
-canvas { 
-  position: fixed; 
-  top: 0; left: 0;
-  width: 100%; 
-  height: 100%; /* Forza il canvas ad adattarsi allo schermo a prescindere dal DPR */
-  z-index: 1; 
-}
+canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
-.scr { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 20px; z-index: 10; background: radial-gradient(circle at center, rgba(7,7,22,0.6) 0%, rgba(7,7,22,0.95) 100%); animation: fadeIn 0.3s ease-out; }
+.scr { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 20px; z-index: 10; background: radial-gradient(circle at center, rgba(7,7,22,0.7) 0%, rgba(7,7,22,0.98) 100%); animation: fadeIn 0.3s ease-out; }
 @keyframes fadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
 
 body[data-s=menu] #home, body[data-s=shop] #shop, body[data-s=over] #over, body.paused #pz { display: flex; }
@@ -57,66 +47,63 @@ body[data-s=menu] #home, body[data-s=shop] #shop, body[data-s=over] #over, body.
 #intro { position: fixed; inset: 0; z-index: 99; background: var(--bg-dark); transition: opacity 0.8s ease; }
 #intro.out { opacity: 0; pointer-events: none; }
 
-/* Enhanced Glassmorphism */
-.glass { background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(140, 160, 255, 0.15); border-radius: 24px; padding: 24px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(61, 240, 255, 0.05); }
+/* Menu e Finestre (Glassmorphism migliorato) */
+.glass { background: var(--bg-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(140, 160, 255, 0.2); border-radius: 24px; padding: 24px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(61, 240, 255, 0.05); width: min(92vw, 500px); max-height: 75dvh; display: flex; flex-direction: column; }
 
-h1 { text-align: center; line-height: 1; font-weight: 900; font-size: clamp(40px, 12vw, 90px); color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green), 0 0 30px rgba(57, 255, 156, 0.6); margin-bottom: 10px; font-style: italic; }
+h1 { text-align: center; line-height: 1; font-weight: 900; font-size: clamp(38px, 11vw, 90px); color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green), 0 0 30px rgba(57, 255, 156, 0.6); margin-bottom: 10px; font-style: italic; }
 h1 small { display: block; font-size: 0.45em; background: linear-gradient(90deg, var(--neon-gold), var(--neon-pink)); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 0 8px rgba(255, 61, 129, 0.8)); margin-top: 5px; }
-h2 { font-weight: 900; font-size: 40px; color: var(--neon-pink); text-shadow: 0 0 20px rgba(255, 61, 129, 0.8); font-style: italic; }
+h2 { font-weight: 900; font-size: clamp(28px, 8vw, 40px); color: var(--neon-pink); text-shadow: 0 0 20px rgba(255, 61, 129, 0.8); font-style: italic; text-align: center; margin-bottom: 10px; }
 
-/* Buttons */
-.btn { font-family: inherit; font-weight: 900; font-size: 18px; color: #000; background: linear-gradient(135deg, var(--neon-green), var(--neon-blue)); border: none; border-radius: 12px; padding: 16px 32px; min-width: 240px; box-shadow: 0 0 20px rgba(57, 255, 156, 0.4); cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 1px; position: relative; overflow: hidden; }
-.btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: 0.5s; }
+/* Bottoni UI */
+.btn { font-family: inherit; font-weight: 900; font-size: 16px; color: #000; background: linear-gradient(135deg, var(--neon-green), var(--neon-blue)); border: none; border-radius: 14px; padding: 16px 28px; min-width: 240px; box-shadow: 0 0 20px rgba(57, 255, 156, 0.4); cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 1.5px; position: relative; overflow: hidden; }
+.btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent); transition: 0.5s; }
 .btn:hover::after { left: 100%; }
-.btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 30px rgba(61, 240, 255, 0.6); }
+.btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 25px rgba(61, 240, 255, 0.6); }
 .btn:active { transform: translateY(1px) scale(0.98); }
 
-.btn.alt { background: rgba(255, 255, 255, 0.03); color: var(--neon-blue); border: 2px solid var(--neon-blue); box-shadow: 0 0 10px rgba(61, 240, 255, 0.2); }
-.btn.alt:hover { background: rgba(61, 240, 255, 0.1); box-shadow: 0 0 25px rgba(61, 240, 255, 0.5); }
-button:disabled { opacity: 0.4; filter: grayscale(1); pointer-events: none; }
+.btn.alt { background: rgba(255, 255, 255, 0.05); color: var(--neon-blue); border: 2px solid var(--neon-blue); box-shadow: 0 0 10px rgba(61, 240, 255, 0.15); }
+.btn.alt:hover { background: rgba(61, 240, 255, 0.1); box-shadow: 0 0 20px rgba(61, 240, 255, 0.4); }
+button:disabled { opacity: 0.3; filter: grayscale(1); pointer-events: none; }
 
-.big { font-weight: 900; font-size: 72px; color: var(--neon-gold); text-shadow: 0 0 30px rgba(255, 200, 61, 0.6); }
-.muted { color: #9aa7d6; font-size: 14px; letter-spacing: 0.5px; opacity: 0.8; }
+.big { font-weight: 900; font-size: clamp(50px, 15vw, 72px); color: var(--neon-gold); text-shadow: 0 0 30px rgba(255, 200, 61, 0.6); text-align: center; }
+.muted { color: #9aa7d6; font-size: 13px; letter-spacing: 0.5px; opacity: 0.9; text-align: center; font-family: system-ui, sans-serif; }
 
-/* HUD */
-#hud { position: fixed; top: 0; left: 0; right: 0; height: 70px; padding: 0 20px; display: none; align-items: center; gap: 15px; pointer-events: none; z-index: 5; background: linear-gradient(180deg, rgba(7,7,22,0.9) 0%, transparent 100%); }
+/* HUD In-Game */
+#hud { position: fixed; top: 0; left: 0; right: 0; padding: env(safe-area-inset-top, 10px) 15px 10px; display: none; align-items: center; justify-content: space-between; gap: 10px; pointer-events: none; z-index: 5; background: linear-gradient(180deg, rgba(7,7,22,0.95) 0%, rgba(7,7,22,0.6) 60%, transparent 100%); }
 body[data-s=play] #hud { display: flex; }
-#sc { font-weight: 900; font-size: 32px; color: var(--neon-green); min-width: 70px; text-shadow: 0 0 15px var(--neon-green); }
-#co { font-weight: 700; color: var(--neon-gold); text-shadow: 0 0 10px var(--neon-gold); }
 
-.bar { width: 100px; height: 8px; border-radius: 4px; background: rgba(255, 255, 255, 0.1); box-shadow: inset 0 0 5px rgba(0,0,0,0.5); overflow: hidden; }
+.hud-group { display: flex; align-items: center; gap: 12px; }
+#sc { font-weight: 900; font-size: 28px; color: var(--neon-green); text-shadow: 0 0 12px var(--neon-green); }
+#co { font-weight: 700; font-size: 16px; color: var(--neon-gold); text-shadow: 0 0 10px var(--neon-gold); background: rgba(0,0,0,0.4); padding: 4px 10px; border-radius: 12px; border: 1px solid rgba(255,200,61,0.3); }
+
+.stam-container { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.bar { width: 80px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.1); box-shadow: inset 0 0 5px rgba(0,0,0,0.8); overflow: hidden; }
 .bar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-green)); box-shadow: 0 0 10px var(--neon-blue); transition: width 0.1s linear; }
+.stam-label { font-size: 9px; color: var(--neon-blue); text-transform: uppercase; letter-spacing: 1px; }
 
-#fx { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; justify-content: flex-end; }
-.chip { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 700; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 5px; }
+#fx { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.chip { background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 3px 8px; font-size: 11px; font-weight: 700; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
-#pb { pointer-events: auto; width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(140, 160, 255, 0.3); background: var(--bg-glass); color: #fff; font-size: 18px; cursor: pointer; transition: 0.2s; backdrop-filter: blur(5px); }
-#pb:hover { background: rgba(255,255,255,0.2); border-color: #fff; }
+#pb { pointer-events: auto; width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(140, 160, 255, 0.3); background: rgba(255,255,255,0.05); color: #fff; font-size: 16px; cursor: pointer; backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; }
+#pb:active { transform: scale(0.9); }
 
-/* Virtual D-Pad / Dash */
-#db { position: fixed; right: 24px; bottom: 30px; width: 80px; height: 80px; border-radius: 50%; display: none; border: 2px solid var(--neon-blue); background: rgba(61, 240, 255, 0.1); color: var(--neon-blue); font-weight: 900; font-size: 14px; box-shadow: 0 0 30px rgba(61, 240, 255, 0.3); touch-action: none; z-index: 5; text-transform: uppercase; letter-spacing: 1px; }
-body[data-s=play].touch #db { display: block; }
-#db:active { background: rgba(61, 240, 255, 0.3); transform: scale(0.95); }
+/* Shop / Impostazioni */
+#sh-container { overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; scrollbar-width: none; }
+#sh-container::-webkit-scrollbar { display: none; }
 
-/* Shop UI */
-#sh { width: min(92vw, 500px); max-height: 70vh; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding-right: 5px; scrollbar-width: thin; scrollbar-color: var(--neon-blue) transparent; }
-#sh::-webkit-scrollbar { width: 6px; }
-#sh::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 3px; }
-
-.tabs { display: flex; gap: 8px; margin-bottom: 10px; }
-.tabs button { flex: 1; font-family: inherit; font-weight: 700; font-size: 14px; padding: 12px; border-radius: 10px; border: 1px solid rgba(140, 160, 255, 0.2); background: rgba(0,0,0,0.3); color: #9aa7d6; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
+.tabs { display: flex; gap: 6px; margin-bottom: 5px; flex-shrink: 0; }
+.tabs button { flex: 1; font-family: inherit; font-weight: 700; font-size: 12px; padding: 12px 4px; border-radius: 10px; border: 1px solid rgba(140, 160, 255, 0.2); background: rgba(0,0,0,0.3); color: #9aa7d6; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s; }
 .tabs button.on { background: rgba(57, 255, 156, 0.15); color: var(--neon-green); border-color: var(--neon-green); box-shadow: 0 0 15px rgba(57, 255, 156, 0.2); }
 
-.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: 0.2s; }
-.row:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
-.row b { display: block; font-size: 16px; color: #fff; letter-spacing: 0.5px; }
-.row small { display: block; color: #9aa7d6; font-weight: 400; font-family: system-ui, sans-serif; font-size: 13px; margin-top: 4px; }
-.row button { font-family: inherit; font-weight: 800; border: none; border-radius: 8px; padding: 10px 16px; background: var(--neon-gold); color: #1a1200; min-width: 90px; cursor: pointer; transition: 0.2s; }
-.row button:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 200, 61, 0.5); }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); }
+.row b { display: block; font-size: 15px; color: #fff; letter-spacing: 0.5px; }
+.row small { display: block; color: #9aa7d6; font-weight: 400; font-family: system-ui, sans-serif; font-size: 12px; margin-top: 4px; line-height: 1.3; }
+.row button { font-family: inherit; font-weight: 800; font-size: 13px; border: none; border-radius: 8px; padding: 10px 14px; background: var(--neon-gold); color: #1a1200; min-width: 90px; cursor: pointer; text-transform: uppercase; }
+.row button.opt-btn { background: rgba(61, 240, 255, 0.15); color: var(--neon-blue); border: 1px solid var(--neon-blue); min-width: 120px; }
 
-.pips { color: var(--neon-green); letter-spacing: 3px; font-style: normal; font-size: 14px; margin-top: 6px; display: block; text-shadow: 0 0 5px var(--neon-green); }
-.sw { display: inline-block; width: 36px; height: 14px; border-radius: 7px; margin-right: 10px; vertical-align: middle; border: 1px solid rgba(255,255,255,0.2); }
-.coins { font-weight: 900; font-size: 26px; color: var(--neon-gold); text-align: center; margin-bottom: 10px; text-shadow: 0 0 15px rgba(255, 200, 61, 0.4); }
+.pips { color: var(--neon-green); letter-spacing: 3px; font-style: normal; font-size: 12px; margin-top: 6px; display: block; text-shadow: 0 0 5px var(--neon-green); }
+.sw { display: inline-block; width: 32px; height: 12px; border-radius: 6px; margin-right: 8px; vertical-align: middle; border: 1px solid rgba(255,255,255,0.2); }
+.coins { font-weight: 900; font-size: 24px; color: var(--neon-gold); text-align: center; margin-bottom: 5px; text-shadow: 0 0 15px rgba(255, 200, 61, 0.4); flex-shrink: 0; }
 
 @media(prefers-reduced-motion:reduce){ #intro, .scr, .btn { transition: none; animation: none; } }
 </style>
@@ -126,24 +113,34 @@ body[data-s=play].touch #db { display: block; }
 <canvas id="g"></canvas>
 
 <div id="hud">
-  <div id="sc">0</div><div id="co">🪙 0</div>
-  <div class="bar" title="Stamina Scatto"><i id="sta"></i></div>
-  <div id="fx"></div>
-  <button id="pb" aria-label="Pausa">❚❚</button>
+  <div class="hud-group">
+    <div id="sc">0</div><div id="co">🪙 0</div>
+  </div>
+  <div class="stam-container">
+    <div class="bar"><i id="sta"></i></div>
+    <div class="stam-label">Dash</div>
+  </div>
+  <div class="hud-group">
+    <div id="fx"></div>
+    <button id="pb" aria-label="Pausa">❚❚</button>
+  </div>
 </div>
-<button id="db">DASH</button>
 
 <div class="scr" id="home">
   <h1>SNAKE<small>OVERCHARGE</small></h1>
   <p class="muted" id="st"></p>
   <button class="btn" id="play">Inizia Sessione</button>
-  <button class="btn alt" id="lab">Laboratorio Dati</button>
-  <button class="btn alt" id="inst" hidden>Installa Modulo</button>
+  <button class="btn alt" id="lab">Laboratorio</button>
+  <button class="btn alt" id="inst" hidden>Installa App</button>
 </div>
 
 <div class="scr" id="shop">
-  <div class="glass" id="sh"><div id="sb"></div></div>
-  <button class="btn alt" id="back">Disconnetti</button>
+  <div class="glass">
+    <div class="coins">🪙 <span id="shop-coins"></span></div>
+    <div class="tabs" id="tabs-container"></div>
+    <div id="sh-container"></div>
+  </div>
+  <button class="btn alt" id="back">Torna al Menu</button>
   <input type="file" id="fi" accept="application/json" hidden>
 </div>
 
@@ -165,19 +162,20 @@ body[data-s=play].touch #db { display: block; }
 <div id="intro"><canvas id="ic"></canvas></div>
 
 <script>
-const $ = s => document.querySelector(s), rand = n => Math.floor(Math.random() * n), SK = 'snake-overcharge-v2';
+const $ = s => document.querySelector(s), rand = n => Math.floor(Math.random() * n), SK = 'snake-overcharge-v3';
 const UP = [
  {id:'mag',n:'Batteria Magnetica',d:'+1s durata Magnete',max:5,c:l=>40+l*40},
- {id:'ghost',n:'Spettro Stabile',d:'+1s durata Spettro',max:5,c:l=>40+l*40},
+ {id:'ghost',n:'Spettro Stabile',d:'Attraversa Muri corrotti (+1s)',max:5,c:l=>40+l*40},
  {id:'over',n:'Overclock Esteso',d:'+1s durata Overclock',max:5,c:l=>60+l*50},
  {id:'dash',n:'Efficienza Scatto',d:'Ricarica Stamina accelerata',max:5,c:l=>30+l*35},
- {id:'shield',n:'Frequenza Scudo',d:'+8% spawn Scudo',max:5,c:l=>50+l*45}];
+ {id:'shield',n:'Frequenza Scudo',d:'+8% probabilità spawn Scudo',max:5,c:l=>50+l*45}];
 const SKINS = [
  {id:'neon',n:'Neon Vector',cost:0,c1:'#39ff9c',c2:'#3df0ff',e:'#fff',p:['#39ff9c','#3df0ff']},
  {id:'pixel',n:'Hi-Bit Dragon',cost:150,c1:'#ff9d3d',c2:'#c2412d',e:'#ffe98a',p:['#ff9d3d','#ffd23d','#c2412d']},
  {id:'mecha',n:'Mecha Viper',cost:350,score:600,c1:'#9aa7c7',c2:'#4b5878',e:'#ff3d4d',p:['#9aa7c7','#ff3d4d','#fff']}];
 const PW = {mag:{e:'🧲',c:'#3d8bff'},ghost:{e:'👻',c:'#c89bff'},shield:{e:'🛡️',c:'#3df0ff'},cut:{e:'✂️',c:'#ff3d4d'},over:{e:'✨',c:'#ffc83d'}};
-const def = {coins:0,hi:0,time:0,games:0,up:{},skin:'neon',own:['neon'],snd:1};
+
+const def = { coins: 0, hi: 0, time: 0, games: 0, up: {}, skin: 'neon', own: ['neon'], snd: 1, vib: 1, ctrl: 'hold' };
 let S; try { S = {...def, ...JSON.parse(localStorage.getItem(SK))} } catch(e) { S = {...def} }
 const save = () => { try { localStorage.setItem(SK, JSON.stringify(S)) } catch(e){} };
 const lv = id => S.up[id] || 0;
@@ -197,55 +195,61 @@ function snd(f, d=0.08, t='square', v=0.04) {
   } catch(e) {}
 }
 
+function vib(pattern) {
+  if (S.vib && navigator.vibrate) {
+    try { navigator.vibrate(pattern); } catch(e){}
+  }
+}
+
 /* ---------- STATO E LAYOUT ---------- */
 let G = null, state = 'intro', paused = false, last = 0, stab = 'up', W, H, DPR, cell = 20, cols = 18, rows = 18, ox = 0, oy = 0;
 const cv = $('#g'), c = cv.getContext('2d');
 const setState = s => { state = s; document.body.dataset.s = s; };
 
 function layout() {
-  const top = 70; let a = G ? G.cols : 0, b = G ? G.rows : 0;
+  const top = parseInt(getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || 0) + 80; 
+  let a = G ? G.cols : 0, b = G ? G.rows : 0;
   if (!a) {
-    cell = Math.max(16, Math.floor(Math.min(W, H - top) / 18));
-    a = cols = Math.floor(W / cell); b = rows = Math.floor((H - top) / cell);
-  } else { cell = Math.floor(Math.min(W / a, (H - top) / b)); }
+    cell = Math.max(16, Math.floor(Math.min(W, H - top - 20) / 18));
+    a = cols = Math.floor(W / cell); b = rows = Math.floor((H - top - 20) / cell);
+  } else { cell = Math.floor(Math.min(W / a, (H - top - 20) / b)); }
   ox = Math.floor((W - a * cell) / 2); oy = top + Math.floor((H - top - b * cell) / 2);
 }
 
 function resize() {
-  DPR = Math.min(devicePixelRatio || 1, 2);
+  DPR = Math.min(devicePixelRatio || 1, 2.5);
   W = innerWidth; H = innerHeight;
   cv.width = W * DPR; cv.height = H * DPR;
   layout();
 }
 addEventListener('resize', resize); resize();
-if (matchMedia('(pointer:coarse)').matches) document.body.classList.add('touch');
 
-/* ---------- CORE LOGIC ---------- */
+/* ---------- CORE LOGIC & ARENA DINAMICA ---------- */
 function newGame() {
   const x = cols >> 1, y = rows >> 1;
   const g = {
-    cols, rows, snake: [{x,y}, {x:x-1,y}, {x:x-2,y}], dir: {x:1,y:0}, q: [], items: [], 
-    fx: {mag:0, ghost:0, over:0, shield:0, inv:0}, score: 0, coins: 0, stam: 100, dash: 0, 
-    acc: -600, t: 0, pT: 6000, cT: 3000, alive: true, shake: 0, freeze: 0, eaten: 0, grow: 0, parts: []
+    cols, rows, snake: [{x,y}, {x:x-1,y}, {x:x-2,y}], dir: {x:1,y:0}, q: [], items: [], obs: [],
+    fx: {mag:0, ghost:0, over:0, shield:0, inv:0}, score: 0, coins: 0, stam: 100, 
+    isDashing: false, dashBurst: 0, 
+    acc: -600, t: 0, pT: 6000, cT: 3000, obsT: 10000, alive: true, shake: 0, freeze: 0, eaten: 0, grow: 0, parts: []
   };
   g.prev = g.snake.map(s => ({...s})); spawn(g, 'food', 1e9); return g;
 }
 
 function startGame() {
   G = null; layout(); G = newGame(); paused = false;
-  document.body.classList.remove('paused'); setState('play'); snd(440, 0.1);
+  document.body.classList.remove('paused'); setState('play'); snd(440, 0.1); vib(50);
 }
 
 function spawn(g, type, ttl) {
   for (let i = 0; i < 200; i++) {
     const x = rand(g.cols), y = rand(g.rows);
-    if (!g.snake.some(s => s.x == x && s.y == y) && !g.items.some(s => s.x == x && s.y == y)) {
+    if (!g.snake.some(s => s.x == x && s.y == y) && !g.items.some(s => s.x == x && s.y == y) && !g.obs.some(o => o.x == x && o.y == y)) {
       g.items.push({type, x, y, ttl, max: ttl}); return;
     }
   }
 }
 
-// Fisica delle particelle
 function burst(g, p, col, n, sp = 6) {
   for (let i = 0; i < n; i++) {
     const a = Math.random() * Math.PI * 2, v = sp * (0.5 + Math.random()), l = 400 + Math.random() * 500;
@@ -253,17 +257,18 @@ function burst(g, p, col, n, sp = 6) {
   }
 }
 
-const tickMs = g => Math.max(80, 135 - g.eaten * 1.2) * (g.dash > 0 ? 0.45 : 1);
+// Calcolo velocità in base al dash
+const tickMs = g => Math.max(80, 135 - g.eaten * 1.2) * (g.isDashing || g.dashBurst > 0 ? 0.45 : 1);
 
 function collect(g, it) {
   const F = g.fx, m = F.over > 0 ? 2 : 1, h = g.snake[0];
   if (it.type == 'food') {
     g.score += 10 * m; g.grow++; g.eaten++; spawn(g, 'food', 1e9);
-    burst(g, h, '#ff3d81', 12); g.shake = Math.max(g.shake, 4); snd(520, 0.08);
+    burst(g, h, '#ff3d81', 12); g.shake = Math.max(g.shake, 4); snd(520, 0.08); vib(30);
   } else if (it.type == 'coin') {
-    g.coins += m; g.score += 5 * m; burst(g, h, '#ffc83d', 10); snd(880, 0.06, 'triangle');
+    g.coins += m; g.score += 5 * m; burst(g, h, '#ffc83d', 10); snd(880, 0.06, 'triangle'); vib(20);
   } else {
-    burst(g, h, PW[it.type].c, 16, 7); g.shake = Math.max(g.shake, 6); snd(660, 0.18, 'sawtooth');
+    burst(g, h, PW[it.type].c, 16, 7); g.shake = Math.max(g.shake, 6); snd(660, 0.18, 'sawtooth'); vib(40);
     if (it.type == 'shield') F.shield = 1;
     else if (it.type == 'cut') {
       const old = g.snake.length - 1, keep = Math.max(3, Math.ceil(old / 2));
@@ -273,11 +278,11 @@ function collect(g, it) {
 }
 
 function die(g) {
-  g.rec = g.score > S.hi; g.alive = false; g.freeze = 150; g.shake = 25;
+  g.rec = g.score > S.hi; g.alive = false; g.freeze = 150; g.shake = 30;
   S.coins += g.coins; S.hi = Math.max(S.hi, g.score); S.games++; S.time += g.t / 1000; save();
   const p = SKINS.find(s => s.id == S.skin).p;
   g.snake.forEach((s, i) => burst(g, s, p[i % p.length], 4, 8));
-  snd(90, 0.6, 'sawtooth', 0.15); setTimeout(() => showOver(g), 850);
+  snd(90, 0.6, 'sawtooth', 0.15); vib([100, 50, 200]); setTimeout(() => showOver(g), 900);
 }
 
 function step(g) {
@@ -285,15 +290,17 @@ function step(g) {
   if (g.q.length) g.dir = g.q.shift();
   const h = g.snake[0], F = g.fx;
   let nx = h.x + g.dir.x, ny = h.y + g.dir.y;
-  const wall = nx < 0 || ny < 0 || nx >= g.cols || ny >= g.rows;
-  const body = g.snake.some((s, i) => i < g.snake.length - 1 && s.x == nx && s.y == ny);
   
-  // Wrap-around stile Nokia 3310: i muri si attraversano
+  // Muri esterni (Wrap-around aperto)
+  const wall = nx < 0 || ny < 0 || nx >= g.cols || ny >= g.rows;
   if (wall) { nx = (nx + g.cols) % g.cols; ny = (ny + g.rows) % g.rows; }
   
-  // Si muore solo colpendo il proprio corpo
-  if (body && F.ghost <= 0 && F.inv <= 0) {
-    if (F.shield) { F.shield = 0; F.inv = 1000; g.shake = 15; snd(120, 0.2, 'sawtooth'); }
+  // Collisione Corpo o Ostacoli Glitch
+  const body = g.snake.some((s, i) => i < g.snake.length - 1 && s.x == nx && s.y == ny);
+  const hitObs = g.obs.some(o => o.x == nx && o.y == ny);
+  
+  if ((body || hitObs) && F.ghost <= 0 && F.inv <= 0) {
+    if (F.shield) { F.shield = 0; F.inv = 1000; g.shake = 15; snd(120, 0.2, 'sawtooth'); vib(80); }
     else return die(g);
   }
   
@@ -317,9 +324,37 @@ function step(g) {
 function update(g, dt) {
   g.t += dt; const F = g.fx;
   for (const k of ['mag', 'ghost', 'over', 'inv']) F[k] = Math.max(0, F[k] - dt);
-  g.dash = Math.max(0, g.dash - dt);
-  g.stam = Math.min(100, g.stam + dt * (12 + 6 * lv('dash')) / 1000);
   
+  // Gestione Stamina e Dash Continuo
+  if (g.dashBurst > 0) g.dashBurst -= dt;
+  if ((g.isDashing || g.dashBurst > 0) && g.stam > 0) {
+    g.stam = Math.max(0, g.stam - dt * 0.04); // Drain veloce
+    if(g.stam <= 0) { g.isDashing = false; g.dashBurst = 0; } // Forza stop
+  } else {
+    g.stam = Math.min(100, g.stam + dt * (0.015 + 0.01 * lv('dash'))); // Ricarica
+  }
+
+  // Spawn Ostacoli (Glitch Walls)
+  if ((g.obsT -= dt) <= 0) {
+    g.obsT = 10000 + rand(5000);
+    const isHoriz = Math.random() > 0.5;
+    const len = 3 + rand(3);
+    const startX = rand(g.cols - len), startY = rand(g.rows - len);
+    const id = Date.now();
+    for(let i=0; i<len; i++) {
+       const ox = startX + (isHoriz ? i : 0);
+       const oy = startY + (isHoriz ? 0 : i);
+       // Evita spawn diretto sulla testa del serpente
+       if(Math.hypot(ox - g.snake[0].x, oy - g.snake[0].y) > 3) {
+           g.obs.push({x: ox, y: oy, ttl: 12000, id});
+       }
+    }
+  }
+  // Aggiornamento Ostacoli
+  g.obs.forEach(o => o.ttl -= dt);
+  g.obs = g.obs.filter(o => o.ttl > 0);
+
+  // Spawn PowerUps e Monete
   if ((g.pT -= dt) <= 0) {
     g.pT = 7000 + rand(4000);
     const t = Math.random() < 0.15 + 0.08 * lv('shield') ? 'shield' : ['mag', 'ghost', 'cut', 'over'][rand(4)];
@@ -338,12 +373,6 @@ function update(g, dt) {
   while (g.acc >= tk && g.alive) { g.acc -= tk; step(g); tk = tickMs(g); }
 }
 
-function dash() {
-  const g = G; if (state != 'play' || paused || !g || !g.alive || g.dash > 0) return;
-  if (g.stam >= 40) g.stam -= 40; else if (g.snake.length > 4) g.snake.pop(); else return;
-  g.dash = 500; g.shake = Math.max(g.shake, 5); snd(300, 0.15, 'sawtooth');
-}
-
 function setDir(x, y) {
   const g = G; if (state != 'play' || paused || !g || !g.alive) return;
   const l = g.q.length ? g.q[g.q.length - 1] : g.dir;
@@ -352,28 +381,64 @@ function setDir(x, y) {
 }
 function pause(on) { if (state != 'play' || !G || !G.alive) return; paused = on; document.body.classList.toggle('paused', on); }
 
-/* ---------- INPUT ---------- */
+/* ---------- INPUT & GESTIONE SCATTO (DASH) ---------- */
+// Tastiera
 addEventListener('keydown', e => {
   const k = e.key.toLowerCase(), m = {arrowup:[0,-1], w:[0,-1], arrowdown:[0,1], s:[0,1], arrowleft:[-1,0], a:[-1,0], arrowright:[1,0], d:[1,0]}[k];
-  if (m) { setDir(...m); e.preventDefault(); } else if (k == ' ') { dash(); e.preventDefault(); } else if (k == 'p' || k == 'escape') pause(!paused);
+  if (m) { setDir(...m); e.preventDefault(); } 
+  else if (k == ' ') { if(G && G.stam > 0 && !G.isDashing) { G.isDashing = true; snd(300, 0.15, 'sawtooth'); vib(20); } e.preventDefault(); }
+  else if (k == 'p' || k == 'escape') pause(!paused);
 });
-let tx, ty, tt = 0, moved = false, lastTap = 0;
-cv.addEventListener('touchstart', e => { e.preventDefault(); if (e.touches.length > 1) return dash(); tx = e.touches[0].clientX; ty = e.touches[0].clientY; moved = false; tt = Date.now(); }, {passive: false});
-cv.addEventListener('touchmove', e => {
-  e.preventDefault(); const t = e.touches[0], dx = t.clientX - tx, dy = t.clientY - ty;
-  if (Math.hypot(dx, dy) > 26) { moved = true; Math.abs(dx) > Math.abs(dy) ? setDir(Math.sign(dx), 0) : setDir(0, Math.sign(dy)); tx = t.clientX; ty = t.clientY; }
+addEventListener('keyup', e => { if (e.key == ' ' && G) G.isDashing = false; });
+
+// Touch: Swipe e Dash Dinamico
+let tx, ty, moved = false, holdTimer = null, lastTap = 0;
+
+cv.addEventListener('touchstart', e => { 
+  e.preventDefault(); 
+  if (state != 'play' || !G || paused || !G.alive) return;
+  tx = e.touches[0].clientX; ty = e.touches[0].clientY; moved = false; 
+
+  if(S.ctrl === 'double') {
+     const now = Date.now();
+     if(now - lastTap < 300 && G.stam >= 20) {
+        G.dashBurst = 800; // 800ms boost
+        snd(300, 0.15, 'sawtooth'); vib(20);
+        lastTap = 0;
+     } else { lastTap = now; }
+  } else {
+     // Modalità Hold: Se tocchi e tieni premuto (anche a fine swipe) si attiva
+     holdTimer = setTimeout(() => {
+        if(G.stam > 0) { G.isDashing = true; snd(300, 0.15, 'sawtooth'); vib(20); }
+     }, 180);
+  }
 }, {passive: false});
+
+cv.addEventListener('touchmove', e => {
+  e.preventDefault(); 
+  if (state != 'play' || !G || paused) return;
+  const t = e.touches[0], dx = t.clientX - tx, dy = t.clientY - ty;
+  if (Math.hypot(dx, dy) > 30) { 
+     moved = true; 
+     Math.abs(dx) > Math.abs(dy) ? setDir(Math.sign(dx), 0) : setDir(0, Math.sign(dy)); 
+     tx = t.clientX; ty = t.clientY; 
+     // Non annulliamo l'hold se ci stiamo muovendo mantenendo premuto
+  }
+}, {passive: false});
+
 cv.addEventListener('touchend', e => {
   e.preventDefault();
-  if (!moved && Date.now() - tt < 220) { if (Date.now() - lastTap < 300) { dash(); lastTap = 0; } else lastTap = Date.now(); }
+  if(e.touches.length === 0) {
+     clearTimeout(holdTimer);
+     if(G) G.isDashing = false;
+  }
 }, {passive: false});
-$('#db').addEventListener('touchstart', e => { e.preventDefault(); e.stopPropagation(); dash(); }, {passive: false});
-$('#db').onclick = dash;
-document.addEventListener('visibilitychange', () => { if (document.hidden) pause(true); });
+
+document.addEventListener('visibilitychange', () => { if (document.hidden) pause(true); clearTimeout(holdTimer); if(G) G.isDashing=false; });
 $('#pb').onclick = () => pause(true); $('#res').onclick = () => pause(false);
 $('#quit').onclick = () => { if (G && G.alive) { S.time += G.t / 1000; S.coins += G.coins; S.hi = Math.max(S.hi, G.score); save(); } home(); };
 
-/* ---------- UI & SHOP ---------- */
+/* ---------- UI & SHOP/IMPOSTAZIONI ---------- */
 function home() {
   G = null; paused = false; document.body.classList.remove('paused'); layout();
   $('#st').textContent = `RECORD: ${S.hi}  ·  🪙 ${S.coins}  ·  RUNS: ${S.games}`; setState('menu');
@@ -388,26 +453,38 @@ $('#lab').onclick = $('#olab').onclick = () => { G = null; layout(); shop(); set
 
 function shop(tab = stab) {
   stab = tab;
-  let h = `<div class="coins">🪙 ${S.coins}</div><div class="tabs">${[['up','Moduli'],['skin','Skin'],['data','Dati']].map(([k,n]) => `<button data-t="${k}" class="${k == tab ? 'on' : ''}">${n}</button>`).join('')}</div>`;
+  $('#shop-coins').textContent = S.coins;
+  $('#tabs-container').innerHTML = [['up','Moduli'],['skin','Skin'],['opt','Impostazioni']].map(([k,n]) => `<button data-t="${k}" class="${k == tab ? 'on' : ''}">${n}</button>`).join('');
+  
+  let h = '';
   if (tab == 'up') h += UP.map(u => { const l = lv(u.id), mx = l >= u.max, p = u.c(l); return `<div class="row"><div><b>${u.n}</b><small>${u.d}</small><i class="pips">${'■'.repeat(l)}${'□'.repeat(u.max-l)}</i></div><button data-up="${u.id}" ${mx || S.coins < p ? 'disabled' : ''}>${mx ? 'MAX' : '🪙 '+p}</button></div>`; }).join('');
   if (tab == 'skin') h += SKINS.map(k => { const o = own(k); return `<div class="row"><div><b><i class="sw" style="background:linear-gradient(90deg,${k.c1},${k.c2})"></i>${k.n}</b><small>${o ? 'Autorizzato' : k.score ? `🪙 ${k.cost} o record ${k.score}` : `🪙 ${k.cost}`}</small></div><button data-sk="${k.id}" ${!o && S.coins < k.cost ? 'disabled' : ''}>${o ? (S.skin == k.id ? 'Attivo' : 'Equip') : '🪙 '+k.cost}</button></div>`; }).join('');
-  if (tab == 'data') h += `<div class="row"><div><b>Backup Sistema</b><small>Salvataggio / Ripristino JSON</small></div></div><div class="row"><button data-a="exp">Esporta</button><button data-a="imp">Importa</button><button data-a="snd">Audio: ${S.snd ? 'ON' : 'OFF'}</button></div>`;
-  $('#sb').innerHTML = h;
+  if (tab == 'opt') {
+    h += `<div class="row"><div><b>Attivazione Dash</b><small>Metodo controllo scatto (Touch)</small></div><button data-opt="ctrl" class="opt-btn">${S.ctrl === 'hold' ? 'Pres. Lunga' : 'Doppio Tocco'}</button></div>`;
+    h += `<div class="row"><div><b>Vibrazione Haptic</b><small>Feedback tattile del device</small></div><button data-opt="vib" class="opt-btn">${S.vib ? 'ON' : 'OFF'}</button></div>`;
+    h += `<div class="row"><div><b>Sistema Audio</b><small>Effetti sonori ambientali</small></div><button data-opt="snd" class="opt-btn">${S.snd ? 'ON' : 'OFF'}</button></div>`;
+    h += `<div class="row" style="margin-top:15px; border-color:rgba(255,200,61,0.2);"><div><b>Backup Dati JSON</b><small>Esporta o importa progressi</small></div><div style="display:flex; gap:6px;"><button data-opt="exp" style="min-width:40px;">⬇️</button><button data-opt="imp" style="min-width:40px;">⬆️</button></div></div>`;
+  }
+  $('#sh-container').innerHTML = h;
 }
 
-$('#sb').onclick = e => {
-  const b = e.target.closest('button'); if (!b) return; const d = b.dataset; if (d.t) return shop(d.t);
+$('#sh-container').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return; const d = b.dataset;
   if (d.up) { const u = UP.find(x => x.id == d.up), l = lv(u.id), p = u.c(l); if (S.coins >= p && l < u.max) { S.coins -= p; S.up[u.id] = l + 1; save(); snd(700, 0.1, 'triangle'); } }
   if (d.sk) { const k = SKINS.find(x => x.id == d.sk); if (!own(k) && S.coins >= k.cost) { S.coins -= k.cost; S.own.push(k.id); } if (own(k)) S.skin = k.id; save(); }
-  if (d.a == 'exp') { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 1)], {type: 'application/json'})); a.download = 'overcharge-data.json'; a.click(); return; }
-  if (d.a == 'imp') return $('#fi').click();
-  if (d.a == 'snd') { S.snd ^= 1; save(); } shop();
-};
+  if (d.opt == 'ctrl') { S.ctrl = S.ctrl === 'hold' ? 'double' : 'hold'; save(); }
+  if (d.opt == 'vib') { S.vib ^= 1; save(); if(S.vib) vib(50); }
+  if (d.opt == 'snd') { S.snd ^= 1; save(); snd(440,0.1); }
+  if (d.opt == 'exp') { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 1)], {type: 'application/json'})); a.download = 'overcharge-data.json'; a.click(); return; }
+  if (d.opt == 'imp') return $('#fi').click();
+  shop();
+});
+$('#tabs-container').addEventListener('click', e => { if(e.target.dataset.t) shop(e.target.dataset.t); });
 
 $('#fi').onchange = e => { const f = e.target.files[0]; if (f) f.text().then(t => { const o = JSON.parse(t); if (typeof o.coins != 'number') throw 0; S = {...def, ...o}; save(); shop(); }).catch(() => alert('Dati corrotti.')); };
 let dp; addEventListener('beforeinstallprompt', e => { e.preventDefault(); dp = e; $('#inst').hidden = false; }); $('#inst').onclick = () => { if (dp) { dp.prompt(); dp = null; $('#inst').hidden = true; } };
 
-/* ---------- RENDERING JUCINESS ---------- */
+/* ---------- RENDERING JUCINESS & ARENA ---------- */
 function pts(g) {
   const a = Math.max(0, Math.min(1, g.acc / tickMs(g)));
   return g.snake.map((s, i) => {
@@ -419,7 +496,7 @@ function pts(g) {
 
 function drawSnake(g) {
   const P = pts(g), n = P.length, r = cell / 2, sk = SKINS.find(s => s.id == S.skin), F = g.fx; c.save();
-  if (F.ghost > 0) c.globalAlpha = 0.45;
+  if (F.ghost > 0) c.globalAlpha = 0.5;
   if (F.inv > 0 && ((g.t / 80 | 0) % 2)) c.globalAlpha *= 0.5;
   
   for (let i = n - 1; i >= 0; i--) {
@@ -455,6 +532,35 @@ function drawSnake(g) {
   c.restore();
 }
 
+function drawArena(g) {
+  const F = g && g.fx, ov = g && F.over > 0, gh = g && F.ghost > 0, aw = cols * cell, ah = rows * cell; 
+  c.fillStyle = ov ? 'rgba(28, 22, 6, 0.8)' : 'rgba(11, 11, 34, 0.7)'; c.fillRect(ox, oy, aw, ah);
+  c.strokeStyle = ov ? 'rgba(255, 200, 60, 0.15)' : 'rgba(61, 240, 255, 0.08)'; c.lineWidth = 1; c.beginPath();
+  for (let i = 0; i <= cols; i++) { c.moveTo(ox + i * cell, oy); c.lineTo(ox + i * cell, oy + ah); }
+  for (let j = 0; j <= rows; j++) { c.moveTo(ox, oy + j * cell); c.lineTo(ox + aw, oy + j * cell); }
+  c.stroke();
+  
+  c.strokeStyle = gh ? '#c89bff' : (ov ? '#ffc83d' : '#3df0ff'); c.lineWidth = 2; c.setLineDash(gh ? [10, 10] : []);
+  c.shadowColor = c.strokeStyle; c.shadowBlur = 20; c.strokeRect(ox, oy, aw, ah); c.setLineDash([]); c.shadowBlur = 0;
+  
+  // Disegna Ostacoli Glitch
+  if(g) {
+    for(const o of g.obs) {
+      if(o.ttl < 2000 && (g.t/100|0)%2) continue; // Lampeggia prima di sparire
+      const ex = ox + o.x * cell, ey = oy + o.y * cell;
+      c.fillStyle = `rgba(255, 61, 77, ${0.4 + 0.3 * Math.sin(g.t/80 + o.id)})`;
+      c.fillRect(ex, ey, cell, cell);
+      
+      c.strokeStyle = '#ff3d4d'; c.lineWidth = 2; c.shadowColor = '#ff3d4d'; c.shadowBlur = 15;
+      c.strokeRect(ex + 2, ey + 2, cell - 4, cell - 4); c.shadowBlur = 0;
+      
+      // Pattern diagonale interno hazard
+      c.strokeStyle = 'rgba(255, 61, 77, 0.5)'; c.lineWidth = 1; c.beginPath();
+      c.moveTo(ex, ey); c.lineTo(ex + cell, ey + cell); c.moveTo(ex + cell, ey); c.lineTo(ex, ey + cell); c.stroke();
+    }
+  }
+}
+
 function drawItems(g) {
   for (const it of g.items) {
     const x = ox + (it.x + 0.5) * cell, y = oy + (it.y + 0.5) * cell, r = cell / 2; c.save();
@@ -479,24 +585,10 @@ function drawItems(g) {
 
 function draw(dt) {
   c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, W, H);
-  const g = G, F = g && g.fx, ov = g && F.over > 0, gh = g && F.ghost > 0, aw = cols * cell, ah = rows * cell; c.save();
-  
+  const g = G; c.save();
   if (g && g.shake > 0.3) c.translate((Math.random() - 0.5) * g.shake, (Math.random() - 0.5) * g.shake);
   
-  // Arena Background
-  c.fillStyle = ov ? 'rgba(28, 22, 6, 0.8)' : 'rgba(11, 11, 34, 0.7)';
-  c.fillRect(ox, oy, aw, ah);
-  
-  // Arena Grid
-  c.strokeStyle = ov ? 'rgba(255, 200, 60, 0.15)' : 'rgba(61, 240, 255, 0.08)'; c.lineWidth = 1; c.beginPath();
-  for (let i = 0; i <= cols; i++) { c.moveTo(ox + i * cell, oy); c.lineTo(ox + i * cell, oy + ah); }
-  for (let j = 0; j <= rows; j++) { c.moveTo(ox, oy + j * cell); c.lineTo(ox + aw, oy + j * cell); }
-  c.stroke();
-  
-  // Arena Borders
-  c.strokeStyle = gh ? '#c89bff' : (ov ? '#ffc83d' : '#3df0ff'); c.lineWidth = 2; c.setLineDash(gh ? [10, 10] : []);
-  c.shadowColor = c.strokeStyle; c.shadowBlur = 20; c.strokeRect(ox, oy, aw, ah); c.setLineDash([]); c.shadowBlur = 0;
-  
+  drawArena(g);
   if (g) {
     drawItems(g); drawSnake(g);
     for (const p of g.parts) {
@@ -525,13 +617,8 @@ function frame(ts) {
   if (G && !paused) {
     if (G.freeze > 0) { G.freeze -= dt; dt = 0; }
     if (G.alive && state == 'play') update(G, dt);
-    G.shake *= Math.exp(-dt / 80); // Smoother shake damping
-    
-    // Physics update with friction
-    for (const p of G.parts) {
-      p.vx *= 0.94; p.vy *= 0.94; // Friction
-      p.x += p.vx * dt / 1000; p.y += p.vy * dt / 1000; p.life -= dt;
-    }
+    G.shake *= Math.exp(-dt / 80);
+    for (const p of G.parts) { p.vx *= 0.94; p.vy *= 0.94; p.x += p.vx * dt / 1000; p.y += p.vy * dt / 1000; p.life -= dt; }
     G.parts = G.parts.filter(p => p.life > 0);
   }
   draw(paused ? 0 : dt);
@@ -551,7 +638,7 @@ requestAnimationFrame(frame);
   function f(now) {
     if (fin) return; const e = now - t0, hu = ease(Math.min(1, e / T)) * 1.2;
     x.clearRect(0, 0, w, h);
-    const hp = pos(hu), hm = port ? hp[1] : hp[0], fs = Math.min(w * 0.18, 100);
+    const hp = pos(hu), hm = port ? hp[1] : hp[0], fs = Math.min(w * 0.16, 90);
     x.save(); x.beginPath(); port ? x.rect(0, 0, w, hm) : x.rect(0, 0, hm, h); x.clip();
     x.textAlign = 'center'; x.textBaseline = 'middle';
     x.font = `italic 900 ${fs}px "Orbitron", sans-serif`; x.fillStyle = '#39ff9c'; x.shadowColor = '#39ff9c'; x.shadowBlur = 40; x.fillText('SNAKE', w / 2, h / 2 - fs * 0.4);
